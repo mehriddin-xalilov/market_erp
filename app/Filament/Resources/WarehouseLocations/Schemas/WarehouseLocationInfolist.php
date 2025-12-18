@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Filament\Resources\WarehouseLocations\Schemas;
+
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Schemas\Schema;
+
+class WarehouseLocationInfolist
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                TextEntry::make('code'),
+                TextEntry::make('section')
+                    ->placeholder('-'),
+                TextEntry::make('rack')
+                    ->placeholder('-'),
+                TextEntry::make('shelf')
+                    ->placeholder('-'),
+                TextEntry::make('notes')
+                    ->placeholder('-')
+                    ->columnSpanFull(),
+                IconEntry::make('status')
+                    ->boolean(),
+                TextEntry::make('created_at')
+                    ->dateTime()
+                    ->placeholder('-'),
+                TextEntry::make('updated_at')
+                    ->dateTime()
+                    ->placeholder('-'),
+            ]);
+    }
+}
