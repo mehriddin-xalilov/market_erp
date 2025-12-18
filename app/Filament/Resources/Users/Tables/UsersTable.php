@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Filament\Resources\Users\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables\Table;
+
+class UsersTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                \Filament\Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
+
+                \Filament\Tables\Columns\TextColumn::make('name')
+                    ->label('Ism')
+                    ->searchable()
+                    ->sortable(),
+
+                \Filament\Tables\Columns\TextColumn::make('email')
+                    ->label('Email')
+                    ->searchable()
+                    ->sortable()
+                    ->copyable(),
+
+                \Filament\Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Rollar')
+                    ->badge()
+                    ->separator(','),
+
+                \Filament\Tables\Columns\TextColumn::make('created_at')
+                    ->label('Yaratilgan sana')
+                    ->dateTime('d.m.Y H:i')
+                    ->sortable(),
+            ])
+            ->filters([
+                \Filament\Tables\Filters\SelectFilter::make('roles')
+                    ->label('Rol')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload(),
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}

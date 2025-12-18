@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 return [
 
-    'auth_provider_model' => 'App\\Models\\User',
-
     /*
     |--------------------------------------------------------------------------
     | Shield Resource
@@ -124,17 +122,8 @@ return [
         'merge' => true,
         'generate' => true,
         'methods' => [
-            'viewAny',
-            'view',
-            'create',
-            'update',
-            'delete',
-            'restore',
-            'forceDelete',
-            'forceDeleteAny',
-            'restoreAny',
-            'replicate',
-            'reorder',
+            'viewAny', 'view', 'create', 'update', 'delete', 'restore',
+            'forceDelete', 'forceDeleteAny', 'restoreAny', 'replicate', 'reorder',
         ],
         'single_parameter_methods' => [
             'viewAny',
