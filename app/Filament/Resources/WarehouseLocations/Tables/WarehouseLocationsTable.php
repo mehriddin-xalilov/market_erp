@@ -17,21 +17,13 @@ class WarehouseLocationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('code')
-                    ->label(__('Code'))
+                TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
-                TextColumn::make('section')
-                    ->label(__('Section'))
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('rack')
-                    ->label(__('Rack'))
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('shelf')
-                    ->label(__('Shelf'))
+                TextColumn::make('address')
+                    ->label(__('Address'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('status')

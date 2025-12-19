@@ -20,7 +20,7 @@ class WarehouseStockInfolist
                                 TextEntry::make('product.name')
                                     ->label(__('Product'))
                                     ->weight('bold'),
-                                TextEntry::make('warehouseLocation.code')
+                                TextEntry::make('warehouseLocation.name')
                                     ->label(__('Warehouse Location')),
                                 TextEntry::make('quantity')
                                     ->label(__('Quantity')),
