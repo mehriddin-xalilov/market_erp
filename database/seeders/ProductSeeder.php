@@ -11,31 +11,45 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $products = [
-            'Smartfonlar' => [
-                ['name' => 'iPhone 15 Pro Max', 'sku' => 'IP15PM-256', 'price' => 18000000, 'cost_price' => 16000000, 'unit' => 'dona', 'description' => 'Apple iPhone 15 Pro Max 256GB'],
-                ['name' => 'Samsung Galaxy S24 Ultra', 'sku' => 'S24U-512', 'price' => 17000000, 'cost_price' => 15000000, 'unit' => 'dona', 'description' => 'Samsung Galaxy S24 Ultra 512GB'],
-                ['name' => 'Xiaomi 14 Ultra', 'sku' => 'MI14U-512', 'price' => 13000000, 'cost_price' => 11000000, 'unit' => 'dona', 'description' => 'Xiaomi 14 Ultra 512GB'],
+            'Portlandsement' => [
+                ['name' => 'Sement M400 50kg', 'sku' => 'CEM-M400-50', 'price' => 65000, 'cost_price' => 55000, 'unit' => 'qop', 'description' => 'Portlandsement M400 50kg qop'],
+                ['name' => 'Sement M500 50kg', 'sku' => 'CEM-M500-50', 'price' => 75000, 'cost_price' => 65000, 'unit' => 'qop', 'description' => 'Portlandsement M500 50kg qop'],
             ],
-            'Noutbuklar' => [
-                ['name' => 'MacBook Pro 14 M3', 'sku' => 'MBP14-M3', 'price' => 24000000, 'cost_price' => 21000000, 'unit' => 'dona', 'description' => 'Apple MacBook Pro 14 M3 Chip'],
-                ['name' => 'Dell XPS 15', 'sku' => 'DELL-XPS15', 'price' => 22000000, 'cost_price' => 19000000, 'unit' => 'dona', 'description' => 'Dell XPS 15 OLED Display'],
+            'Gips' => [
+                ['name' => 'Gips Knauf 30kg', 'sku' => 'GIPS-KN-30', 'price' => 85000, 'cost_price' => 72000, 'unit' => 'qop', 'description' => 'Knauf gips 30kg'],
+                ['name' => 'Gips Volma 25kg', 'sku' => 'GIPS-VL-25', 'price' => 70000, 'cost_price' => 60000, 'unit' => 'qop', 'description' => 'Volma gips 25kg'],
             ],
-            'Televizorlar' => [
-                ['name' => 'LG OLED C3 55"', 'sku' => 'LG-C3-55', 'price' => 19000000, 'cost_price' => 16000000, 'unit' => 'dona', 'description' => 'LG OLED evo C3 55 inch 4K Smart TV'],
-                ['name' => 'Sony Bravia XR 65"', 'sku' => 'SONY-XR-65', 'price' => 21000000, 'cost_price' => 18000000, 'unit' => 'dona', 'description' => 'Sony Bravia XR A80L 65 inch OLED'],
+            'Quruq aralashmalar' => [
+                ['name' => 'Shpaklevka 20kg', 'sku' => 'SHPAK-20', 'price' => 45000, 'cost_price' => 38000, 'unit' => 'qop', 'description' => 'Shpaklevka quruq aralashma 20kg'],
             ],
-            'Muzlatgichlar' => [
-                ['name' => 'Samsung Bespoke', 'sku' => 'SAM-BESPOKE', 'price' => 15000000, 'cost_price' => 12000000, 'unit' => 'dona', 'description' => 'Samsung Bespoke 4-Door Flex Refrigerator'],
-                ['name' => 'LG InstaView', 'sku' => 'LG-INSTA', 'price' => 18000000, 'cost_price' => 15000000, 'unit' => 'dona', 'description' => 'LG InstaView Door-in-Door Refrigerator'],
+            'Qizil g\'isht' => [
+                ['name' => 'G\'isht qizil M100', 'sku' => 'BRICK-R-M100', 'price' => 1200, 'cost_price' => 900, 'unit' => 'dona', 'description' => 'Qizil g\'isht M100 250x120x65mm'],
+                ['name' => 'G\'isht qizil M150', 'sku' => 'BRICK-R-M150', 'price' => 1500, 'cost_price' => 1200, 'unit' => 'dona', 'description' => 'Qizil g\'isht M150 250x120x65mm'],
             ],
-            'Ichimliklar' => [
-                ['name' => 'Coca-Cola 1.5L', 'sku' => 'COKE-1.5', 'price' => 12000, 'cost_price' => 8000, 'unit' => 'dona', 'description' => 'Coca-Cola Classic 1.5L'],
-                ['name' => 'Pepsi 1L', 'sku' => 'PEPSI-1', 'price' => 10000, 'cost_price' => 7000, 'unit' => 'dona', 'description' => 'Pepsi Cola 1L'],
-                ['name' => 'Fanta 1.5L', 'sku' => 'FANTA-1.5', 'price' => 12000, 'cost_price' => 8000, 'unit' => 'dona', 'description' => 'Fanta Orange 1.5L'],
+            'Silikat g\'isht' => [
+                ['name' => 'G\'isht silikat M150', 'sku' => 'BRICK-S-M150', 'price' => 1800, 'cost_price' => 1500, 'unit' => 'dona', 'description' => 'Oq silikat g\'isht M150'],
             ],
-            'Shirinliklar' => [
-                ['name' => 'Snickers Super', 'sku' => 'SNICKERS-S', 'price' => 8000, 'cost_price' => 5000, 'unit' => 'dona', 'description' => 'Snickers Super Chocolate Bar'],
-                ['name' => 'KitKat 4 Finger', 'sku' => 'KITKAT-4', 'price' => 7000, 'cost_price' => 4000, 'unit' => 'dona', 'description' => 'Nestle KitKat 4 Finger'],
+            'Penoblok' => [
+                ['name' => 'Penoblok 600x300x200', 'sku' => 'FOAM-600', 'price' => 12000, 'cost_price' => 10000, 'unit' => 'dona', 'description' => 'Penoblok 600x300x200mm'],
+            ],
+            'Ichki bo\'yoq' => [
+                ['name' => 'Bo\'yoq Dulux ichki 10L', 'sku' => 'PAINT-DX-10', 'price' => 450000, 'cost_price' => 380000, 'unit' => 'chelak', 'description' => 'Dulux ichki bo\'yoq 10L'],
+                ['name' => 'Bo\'yoq Tikkurila 9L', 'sku' => 'PAINT-TK-9', 'price' => 520000, 'cost_price' => 440000, 'unit' => 'chelak', 'description' => 'Tikkurila ichki bo\'yoq 9L'],
+            ],
+            'Tashqi bo\'yoq' => [
+                ['name' => 'Fasad bo\'yoqi 15L', 'sku' => 'PAINT-FS-15', 'price' => 380000, 'cost_price' => 320000, 'unit' => 'chelak', 'description' => 'Fasad uchun bo\'yoq 15L'],
+            ],
+            'Simlar va kabellar' => [
+                ['name' => 'Kabel VVG 3x2.5', 'sku' => 'WIRE-VVG-3x2.5', 'price' => 8500, 'cost_price' => 7000, 'unit' => 'metr', 'description' => 'Kabel VVG 3x2.5mm'],
+                ['name' => 'Kabel VVG 3x1.5', 'sku' => 'WIRE-VVG-3x1.5', 'price' => 6500, 'cost_price' => 5500, 'unit' => 'metr', 'description' => 'Kabel VVG 3x1.5mm'],
+            ],
+            'Rozetkalar va kalitlar' => [
+                ['name' => 'Rozetka Legrand', 'sku' => 'SOCK-LG', 'price' => 25000, 'cost_price' => 20000, 'unit' => 'dona', 'description' => 'Legrand rozetka'],
+                ['name' => 'Kalit 1-klapanli', 'sku' => 'SWITCH-1', 'price' => 18000, 'cost_price' => 15000, 'unit' => 'dona', 'description' => '1-klapanli kalit'],
+            ],
+            'Quvurlar' => [
+                ['name' => 'Quvur PPR 20mm', 'sku' => 'PIPE-PPR-20', 'price' => 12000, 'cost_price' => 10000, 'unit' => 'metr', 'description' => 'PPR quvur 20mm'],
+                ['name' => 'Quvur PPR 25mm', 'sku' => 'PIPE-PPR-25', 'price' => 15000, 'cost_price' => 12500, 'unit' => 'metr', 'description' => 'PPR quvur 25mm'],
             ],
         ];
 

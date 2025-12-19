@@ -31,7 +31,7 @@ class StockTransactionsTable
                     ->label(__('Product'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('warehouseLocation.code')
+                TextColumn::make('warehouseLocation.name')
                     ->label(__('Warehouse Location'))
                     ->searchable()
                     ->sortable(),

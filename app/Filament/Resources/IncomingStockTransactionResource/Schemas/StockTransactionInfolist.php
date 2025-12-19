@@ -45,7 +45,7 @@ class StockTransactionInfolist
                             ->schema([
                                 TextEntry::make('product.name')
                                     ->label(__('Product')),
-                                TextEntry::make('warehouseLocation.code')
+                                TextEntry::make('warehouseLocation.name')
                                     ->label(__('Warehouse Location')),
                             ]),
                         Grid::make(3)

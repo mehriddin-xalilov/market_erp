@@ -73,7 +73,7 @@ class StockTransactionForm
                                     }),
                                 Select::make('warehouse_location_id')
                                     ->label(__('Warehouse Location'))
-                                    ->relationship('warehouseLocation', 'code', modifyQueryUsing: function (Builder $query, Get $get) {
+                                    ->relationship('warehouseLocation', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
                                         $productId = $get('product_id');
 
                                         if ($productId) {

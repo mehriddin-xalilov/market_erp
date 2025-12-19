@@ -40,7 +40,7 @@ class StockTransactionForm
                                     ->required(),
                                 Select::make('warehouse_location_id')
                                     ->label(__('Warehouse Location'))
-                                    ->relationship('warehouseLocation', 'code')
+                                    ->relationship('warehouseLocation', 'name')
                                     ->searchable()
                                     ->preload()
                                     ->required(),

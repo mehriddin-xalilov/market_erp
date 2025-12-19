@@ -9,12 +9,9 @@ class WarehouseLocation extends Model
 {
     protected $table = 'warehouse_locations';
     protected $fillable = [
-        'code',
-        'section',
-        'rack',
-        'shelf',
-        'notes',
+        'name',
         'status',
+        'address',
     ];
 
 
@@ -23,5 +20,4 @@ class WarehouseLocation extends Model
     {
         return $this->hasMany(WarehouseStock::class);
     }
-
 }

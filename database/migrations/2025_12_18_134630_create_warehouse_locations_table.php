@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('warehouse_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('section')->nullable();
-            $table->string('rack')->nullable();
-            $table->string('shelf')->nullable();
-            $table->text('notes')->nullable();
+            $table->string('name')->unique();
             $table->boolean('status')->default(true);
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

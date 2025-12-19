@@ -20,7 +20,7 @@ class WarehouseStocksTable
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
-                TextColumn::make('warehouseLocation.code')
+                TextColumn::make('warehouseLocation.name')
                     ->label(__('Warehouse Location'))
                     ->searchable()
                     ->sortable(),

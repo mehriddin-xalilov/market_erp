@@ -11,9 +11,13 @@ use App\Filament\Resources\WarehouseLocations\Schemas\WarehouseLocationInfolist;
 use App\Filament\Resources\WarehouseLocations\Tables\WarehouseLocationsTable;
 use App\Models\WarehouseLocation;
 use BackedEnum;
+use Filament\Forms\Components;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables;
 use Filament\Tables\Table;
 
 class WarehouseLocationResource extends Resource
@@ -41,7 +45,25 @@ class WarehouseLocationResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return WarehouseLocationForm::configure($schema);
+        return $schema
+            ->schema([
+                Section::make()
+                    ->schema([
+                        Components\TextInput::make('name')
+                            ->label(__('Name'))
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
+                        Components\TextInput::make('address')
+                            ->label(__('Address'))
+                            ->maxLength(255),
+                        Components\Toggle::make('status')
+                            ->label(__('Status'))
+                            ->required()
+                            ->default(true),
+                    ])
+                    ->columns(2),
+            ]);
     }
 
     public static function infolist(Schema $schema): Schema
@@ -51,7 +73,27 @@ class WarehouseLocationResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return WarehouseLocationsTable::configure($table);
+        return WarehouseLocationsTable::configure($table)
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->label(__('Address'))
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->label(__('Status'))
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ]);
     }
 
     public static function getRelations(): array

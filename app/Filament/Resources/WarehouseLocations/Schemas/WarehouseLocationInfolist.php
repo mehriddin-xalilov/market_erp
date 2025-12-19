@@ -18,8 +18,8 @@ class WarehouseLocationInfolist
                     ->schema([
                         Grid::make(2)
                             ->schema([
-                                TextEntry::make('code')
-                                    ->label(__('Code'))
+                                TextEntry::make('name')
+                                    ->label(__('Name'))
                                     ->weight('bold')
                                     ->copyable(),
                                 TextEntry::make('status')
@@ -28,28 +28,8 @@ class WarehouseLocationInfolist
                                     ->formatStateUsing(fn(bool $state): string => $state ? __('Active') : __('Inactive'))
                                     ->color(fn(bool $state): string => $state ? 'success' : 'danger'),
                             ]),
-                    ]),
-
-                Section::make(__('Location Details'))
-                    ->schema([
-                        Grid::make(3)
-                            ->schema([
-                                TextEntry::make('section')
-                                    ->label(__('Section'))
-                                    ->placeholder('-'),
-                                TextEntry::make('rack')
-                                    ->label(__('Rack'))
-                                    ->placeholder('-'),
-                                TextEntry::make('shelf')
-                                    ->label(__('Shelf'))
-                                    ->placeholder('-'),
-                            ]),
-                    ]),
-
-                Section::make(__('Additional Information'))
-                    ->schema([
-                        TextEntry::make('notes')
-                            ->label(__('Notes'))
+                        TextEntry::make('address')
+                            ->label(__('Address'))
                             ->placeholder('-')
                             ->columnSpanFull(),
                     ]),
