@@ -64,8 +64,8 @@ class WarehouseLocationsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                CreateAction::make()
-                    ->label(__('Create')),
+                // CreateAction::make()
+                //     ->label(__('Create')),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

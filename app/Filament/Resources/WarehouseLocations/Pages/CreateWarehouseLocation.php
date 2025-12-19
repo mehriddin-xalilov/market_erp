@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateWarehouseLocation extends CreateRecord
 {
     protected static string $resource = WarehouseLocationResource::class;
+
+    public function getTitle(): string
+    {
+        return __('Ombor joylashuvi');
+    }
 }

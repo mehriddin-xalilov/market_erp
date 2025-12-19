@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\StockTransactions\Tables;
+namespace App\Filament\Resources\IncomingStockTransactionResource\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -16,6 +16,7 @@ class StockTransactionsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('reference_no')
                     ->label(__('Reference No'))
