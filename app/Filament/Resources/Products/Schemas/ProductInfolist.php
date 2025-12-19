@@ -49,24 +49,17 @@ class ProductInfolist
 
                 Section::make('Narx ma\'lumotlari')
                     ->schema([
-                        TextEntry::make('cost_price')
-                            ->label('Tan narxi')
-                            ->money('UZS')
-                            ->size('lg'),
+
 
                         TextEntry::make('price')
                             ->label('Sotuv narxi')
-                            ->money('UZS')
+                            ->numeric(decimalPlaces: 0)
+                            ->suffix(' so\'m')
                             ->size('lg')
                             ->weight('bold')
                             ->color('success'),
 
-                        TextEntry::make('profit')
-                            ->label('Foyda')
-                            ->state(fn($record) => $record->price - $record->cost_price)
-                            ->money('UZS')
-                            ->size('lg')
-                            ->color(fn($state) => $state > 0 ? 'success' : 'danger'),
+
                     ])
                     ->columns(3),
 

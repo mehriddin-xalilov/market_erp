@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->bigInteger('price');
-            $table->bigInteger('cost_price');
+            $table->bigInteger('cost_price')->nullable();
             $table->integer('current_stock')->default(0);
             $table->integer('reorder_level')->default(10);
             $table->string('unit')->default('pcs');

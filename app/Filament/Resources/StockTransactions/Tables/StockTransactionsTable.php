@@ -54,11 +54,13 @@ class StockTransactionsTable
                     ->sortable(),
                 TextColumn::make('unit_price')
                     ->label(__('Unit Price'))
-                    ->money()
+                    ->numeric(decimalPlaces: 0)
+                    ->suffix(' so\'m')
                     ->sortable(),
                 TextColumn::make('total_price')
                     ->label(__('Total Price'))
-                    ->money()
+                    ->numeric(decimalPlaces: 0)
+                    ->suffix(' so\'m')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label(__('Created At'))

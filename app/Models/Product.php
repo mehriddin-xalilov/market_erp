@@ -20,6 +20,9 @@ class Product extends Model
         'unit',
         'status',
     ];
+    protected $hidden = [
+        'cost_price',
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');

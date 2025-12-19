@@ -54,10 +54,12 @@ class StockTransactionInfolist
                                     ->label(__('Quantity')),
                                 TextEntry::make('unit_price')
                                     ->label(__('Unit Price'))
-                                    ->money(),
+                                    ->numeric(decimalPlaces: 0)
+                                    ->suffix(' so\'m'),
                                 TextEntry::make('total_price')
                                     ->label(__('Total Price'))
-                                    ->money(),
+                                    ->numeric(decimalPlaces: 0)
+                                    ->suffix(' so\'m'),
                             ]),
                     ]),
 

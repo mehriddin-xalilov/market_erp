@@ -48,13 +48,7 @@ class ProductForm
 
                 Section::make('Narx ma\'lumotlari')
                     ->schema([
-                        TextInput::make('cost_price')
-                            ->label('Tan narxi')
-                            ->required()
-                            ->numeric()
-                            ->minValue(0)
-                            ->suffix('so\'m')
-                            ->columnSpan(1),
+
 
                         TextInput::make('price')
                             ->label('Sotuv narxi')

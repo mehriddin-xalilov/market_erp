@@ -42,16 +42,12 @@ class ProductsTable
 
                 TextColumn::make('price')
                     ->label('Sotuv narxi')
-                    ->money('UZS')
+                    ->numeric(decimalPlaces: 0)
+                    ->suffix(' so\'m')
                     ->sortable()
                     ->alignEnd(),
 
-                TextColumn::make('cost_price')
-                    ->label('Tan narxi')
-                    ->money('UZS')
-                    ->sortable()
-                    ->alignEnd()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
 
                 TextColumn::make('current_stock')
                     ->label('Zaxira')

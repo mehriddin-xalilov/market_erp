@@ -7,7 +7,11 @@ use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\WarehouseStock;
 
 class StockTransactionForm
 {
@@ -34,7 +38,8 @@ class StockTransactionForm
                                         1 => __('In'),
                                         2 => __('Out'),
                                     ])
-                                    ->required(),
+                                    ->required()
+                                    ->live(),
                             ]),
                     ]),
 
@@ -44,16 +49,74 @@ class StockTransactionForm
                             ->schema([
                                 Select::make('product_id')
                                     ->label(__('Product'))
-                                    ->relationship('product', 'name')
+                                    ->relationship('product', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
+                                        $type = $get('type');
+                                        $locationId = $get('warehouse_location_id');
+
+                                        if ($type == 2) {
+                                            if ($locationId) {
+                                                $query->whereHas('warehouseStocks', function ($q) use ($locationId) {
+                                                    $q->where('warehouse_location_id', $locationId)
+                                                        ->where('quantity', '>', 0);
+                                                });
+                                            } else {
+                                                $query->whereHas('warehouseStocks', function ($q) {
+                                                    $q->where('quantity', '>', 0);
+                                                });
+                                            }
+                                        }
+                                    })
                                     ->searchable()
                                     ->preload()
-                                    ->required(),
+                                    ->required()
+                                    ->live()
+                                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                                        $locationId = $get('warehouse_location_id');
+                                        if ($locationId && $state) {
+                                            $exists = WarehouseStock::where('warehouse_location_id', $locationId)
+                                                ->where('product_id', $state)
+                                                ->where('quantity', '>', 0)
+                                                ->exists();
+                                            if (! $exists) {
+                                                $set('warehouse_location_id', null);
+                                            }
+                                        }
+                                    }),
                                 Select::make('warehouse_location_id')
                                     ->label(__('Warehouse Location'))
-                                    ->relationship('warehouseLocation', 'code')
+                                    ->relationship('warehouseLocation', 'code', modifyQueryUsing: function (Builder $query, Get $get) {
+                                        $type = $get('type');
+                                        $productId = $get('product_id');
+
+                                        if ($type == 2) {
+                                            if ($productId) {
+                                                $query->whereHas('warehouseStocks', function ($q) use ($productId) {
+                                                    $q->where('product_id', $productId)
+                                                        ->where('quantity', '>', 0);
+                                                });
+                                            } else {
+                                                $query->whereHas('warehouseStocks', function ($q) {
+                                                    $q->where('quantity', '>', 0);
+                                                });
+                                            }
+                                        }
+                                    })
                                     ->searchable()
                                     ->preload()
-                                    ->required(),
+                                    ->required()
+                                    ->live()
+                                    ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                                        $productId = $get('product_id');
+                                        if ($productId && $state) {
+                                            $exists = WarehouseStock::where('warehouse_location_id', $state)
+                                                ->where('product_id', $productId)
+                                                ->where('quantity', '>', 0)
+                                                ->exists();
+                                            if (! $exists) {
+                                                $set('product_id', null);
+                                            }
+                                        }
+                                    }),
                             ]),
                         Grid::make(3)
                             ->schema([
