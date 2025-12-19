@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
+use Filament\Support\Enums\IconSize;
 use Filament\Schemas\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -94,7 +95,7 @@ class ProductInfolist
                             ->falseIcon('heroicon-o-x-circle')
                             ->trueColor('success')
                             ->falseColor('danger')
-                            ->size('lg'),
+                            ->size(IconSize::Large),
                     ])
                     ->columns(3),
 
