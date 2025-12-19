@@ -15,23 +15,30 @@ class WarehouseStocksTable
     {
         return $table
             ->columns([
-                TextColumn::make('product_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('warehouse_location_id')
-                    ->numeric()
+                TextColumn::make('product.name')
+                    ->label(__('Product'))
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
+                TextColumn::make('warehouseLocation.code')
+                    ->label(__('Warehouse Location'))
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('quantity')
+                    ->label(__('Quantity'))
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('last_updated_at')
+                    ->label(__('Last Updated At'))
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

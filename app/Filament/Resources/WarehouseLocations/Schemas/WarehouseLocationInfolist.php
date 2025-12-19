@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\WarehouseLocations\Schemas;
 
-use Filament\Infolists\Components\IconEntry;
+use Filament\Schemas\Components\Grid;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+
+use Filament\Schemas\Components\Section;
 
 class WarehouseLocationInfolist
 {
@@ -12,24 +14,61 @@ class WarehouseLocationInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('code'),
-                TextEntry::make('section')
-                    ->placeholder('-'),
-                TextEntry::make('rack')
-                    ->placeholder('-'),
-                TextEntry::make('shelf')
-                    ->placeholder('-'),
-                TextEntry::make('notes')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                IconEntry::make('status')
-                    ->boolean(),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
+                Section::make(__('Basic Information'))
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                TextEntry::make('code')
+                                    ->label(__('Code'))
+                                    ->weight('bold')
+                                    ->copyable(),
+                                TextEntry::make('status')
+                                    ->label(__('Status'))
+                                    ->badge()
+                                    ->formatStateUsing(fn(bool $state): string => $state ? __('Active') : __('Inactive'))
+                                    ->color(fn(bool $state): string => $state ? 'success' : 'danger'),
+                            ]),
+                    ]),
+
+                Section::make(__('Location Details'))
+                    ->schema([
+                        Grid::make(3)
+                            ->schema([
+                                TextEntry::make('section')
+                                    ->label(__('Section'))
+                                    ->placeholder('-'),
+                                TextEntry::make('rack')
+                                    ->label(__('Rack'))
+                                    ->placeholder('-'),
+                                TextEntry::make('shelf')
+                                    ->label(__('Shelf'))
+                                    ->placeholder('-'),
+                            ]),
+                    ]),
+
+                Section::make(__('Additional Information'))
+                    ->schema([
+                        TextEntry::make('notes')
+                            ->label(__('Notes'))
+                            ->placeholder('-')
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make(__('System Information'))
+                    ->schema([
+                        Grid::make(2)
+                            ->schema([
+                                TextEntry::make('created_at')
+                                    ->label(__('Created At'))
+                                    ->dateTime()
+                                    ->placeholder('-'),
+                                TextEntry::make('updated_at')
+                                    ->label(__('Updated At'))
+                                    ->dateTime()
+                                    ->placeholder('-'),
+                            ]),
+                    ])
+                    ->collapsed(),
             ]);
     }
 }

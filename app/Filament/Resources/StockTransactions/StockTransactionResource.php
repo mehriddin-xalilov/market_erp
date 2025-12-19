@@ -20,9 +20,23 @@ class StockTransactionResource extends Resource
 {
     protected static ?string $model = StockTransaction::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
+    protected static ?string $recordTitleAttribute = 'reference_no';
 
-    protected static ?string $recordTitleAttribute = 'StockTransaction';
+    public static function getNavigationLabel(): string
+    {
+        return __('Stock Transactions');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Stock Transaction');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Stock Transactions');
+    }
 
     public static function form(Schema $schema): Schema
     {

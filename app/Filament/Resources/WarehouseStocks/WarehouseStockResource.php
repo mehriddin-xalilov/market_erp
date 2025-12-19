@@ -20,9 +20,23 @@ class WarehouseStockResource extends Resource
 {
     protected static ?string $model = WarehouseStock::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;
+    protected static ?string $recordTitleAttribute = 'id';
 
-    protected static ?string $recordTitleAttribute = 'WarehouseStock';
+    public static function getNavigationLabel(): string
+    {
+        return __('Warehouse Stocks');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Warehouse Stock');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Warehouse Stocks');
+    }
 
     public static function form(Schema $schema): Schema
     {

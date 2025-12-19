@@ -3,10 +3,12 @@
 namespace App\Filament\Resources\StockTransactions\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class StockTransactionsTable
@@ -15,46 +17,75 @@ class StockTransactionsTable
     {
         return $table
             ->columns([
-                TextColumn::make('product_id')
-                    ->numeric()
+                TextColumn::make('reference_no')
+                    ->label(__('Reference No'))
+                    ->searchable()
+                    ->sortable()
+                    ->weight('bold'),
+                TextColumn::make('user.name')
+                    ->label(__('User'))
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('warehouse_location_id')
-                    ->numeric()
+                TextColumn::make('product.name')
+                    ->label(__('Product'))
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('warehouseLocation.code')
+                    ->label(__('Warehouse Location'))
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('type')
-                    ->numeric()
+                    ->label(__('Type'))
+                    ->badge()
+                    ->formatStateUsing(fn(int $state): string => match ($state) {
+                        1 => __('In'),
+                        2 => __('Out'),
+                        default => (string) $state,
+                    })
+                    ->color(fn(int $state): string => match ($state) {
+                        1 => 'success',
+                        2 => 'danger',
+                        default => 'gray',
+                    })
                     ->sortable(),
                 TextColumn::make('quantity')
+                    ->label(__('Quantity'))
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('unit_price')
+                    ->label(__('Unit Price'))
                     ->money()
                     ->sortable(),
                 TextColumn::make('total_price')
+                    ->label(__('Total Price'))
                     ->money()
                     ->sortable(),
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('reference_no')
-                    ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('type')
+                    ->label(__('Type'))
+                    ->options([
+                        1 => __('In'),
+                        2 => __('Out'),
+                    ]),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
+                CreateAction::make()
+                    ->label(__('Create')),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
